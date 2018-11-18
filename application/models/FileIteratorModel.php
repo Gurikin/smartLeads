@@ -6,9 +6,9 @@
  * Time: 22:23
  */
 
-class FileIterator implements SeekableIterator
+class FileIteratorModel implements SeekableIterator
 {
-    private $_filePath = "text.txt";
+    private $_filePath = "source/myphp/text.txt";
     private $_key = 0;
     private $_currentString = 0;
     /**
@@ -60,11 +60,6 @@ class FileIterator implements SeekableIterator
     public function next()
     {
         $this->_tempGenerator->next();
-//        $this->_key++;
-//        if ($this->valid()) {
-//            $this->clearCurrent();
-//            $this->current();
-//        }
     }
 
     /**
@@ -198,15 +193,3 @@ class FileIterator implements SeekableIterator
         return $resultArr;
     }
 }
-
-$timeStart = microtime(true);
-$count = 50000;
-$fr = new FileIterator('text.txt');
-$randomIndexes = $fr->getRandomIndexes($count);
-foreach ($fr->readCustomStringGenerator($randomIndexes) as $item) {
-    echo $item . "<br>";
-}
-$timeEnd = microtime(true);
-echo "<hr><h1>Объем используемой памяти: ";
-require ('memory.php');
-echo "\n<hr>$count строк из файла были прочитаны за " . ((float)$timeEnd - (float)$timeStart) . " секунд.\n</h1>";

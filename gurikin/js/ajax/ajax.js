@@ -20,37 +20,6 @@ function renderResponse(requestType, JSONreq, requestUrl) {
     };
 }
 
-function sendAjaxForm_createTask() {
-    $("#ajax-form").submit(function (event) {
-        //Stop form from submitting normally
-        event.preventDefault();
-
-        // Get some values from elements on the page
-        var $form = $(this),
-                tskTitle = $form.find("input[name='taskTitle']").val(),
-                bgnDate = $form.find("input[name='beginDate']").val(),
-                eDate = $form.find("input[name='endDate']").val(),
-                prgs = $form.find("input[name='progress']").val(),
-                dscrn = $form.find("input[name='description']").val(),
-                url = $form.attr("action");
-
-        //Send hte data using post
-        var posting = $.post(url, {
-            taskTitle: tskTitle,
-            beginDate: bgnDate,
-            endDate: eDate,
-            progress: prgs,
-            description: dscrn
-        });
-
-        // Get the result
-        posting.done(function (data) {
-            $("#modalWindow-content").empty().append(data);
-        });
-        renderResponse('GET', '', '/task/selectTask');
-    });
-}
-
 function sendAjaxForm_createUser() {
     $("#ajax-form").submit(function (event) {
         //Stop form from submitting normally
@@ -114,53 +83,3 @@ function userInfo() {
         'progress': 0
     };
 }
-
-function createChart() {
-    $(document).ready(function () {
-        var req = sendRequest('GET', '', '/chart/getUserEfficiencyChart');
-        req.onreadystatechange = function () {
-            if (req.readyState !== 4)
-                return;
-            if (req.status !== 200) {
-                //handle of error
-                alert(req.status + ': ' + req.statusText);
-            } else {
-                //      var response = document.getElementById("container body-content");
-                //      response.innerHTML = req.responseText;              
-                var us = JSON.parse(req.responseText);
-                console.log(us);
-                createPieChart("myChart", us.users, us.efficiency);
-            }
-        };
-    });
-}
-
-function createPieChart(ctxElementId, labels, data) {
-    var ctx = document.getElementById(ctxElementId);
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels,
-            datasets: [{
-                    label: '# of Votes',
-                    data,
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-        }
-    });
-}
-
-function userEfficiency() {
-    this.secondName = "";
-    this.taskCount = 0;
-}
-

@@ -42,3 +42,27 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+th, td {
+     padding: 0.25rem 0.75rem;
+ }
+th:hover {
+    cursor: pointer;
+    background: aquamarine;
+}
+th#asc:after {
+    content: "\2193";
+}
+th#desc:after {
+    content: "\2191";
+}
+td {
+    text-align: right;
+}
+.name {
+    text-align: left;
+}
+
+a.task:hover {
+    cursor: pointer;
+}

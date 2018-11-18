@@ -1,5 +1,11 @@
 <?php
 
+/* Автозагрузчик классов */
+spl_autoload_register(function ($class){
+//	echo "<h1>$class</h1>\n";
+    require_once($class.'.php');
+});
+
 /**
  * @author Igor Banchikov
  * @todo This is the main controller class,
@@ -7,7 +13,7 @@
  * @use Singleton pattern
  */
 
-class FrontController {
+class RouterController {
     /**
      * @var string $_controller needs to select the controller class to use
      * @var string $_action needs to select the method of using controller class
@@ -43,9 +49,9 @@ class FrontController {
             $splits = null;
         }
         //Choose the controller
-        $this->_controller = !empty($splits[0]) ? ucfirst($splits[0]) . 'Controller' : 'AuthController';
+        $this->_controller = !empty($splits[0]) ? ucfirst($splits[0]) . 'Controller' : 'SiteController';
         //Какой action использовать?
-        $this->_action = !empty($splits[1]) ? $splits[1] . 'Action' : 'signInAction';
+        $this->_action = !empty($splits[1]) ? $splits[1] . 'Action' : 'indexAction';
         //Есть ли параметры и их значения?
         if (!empty($splits[2])) {
             $keys = $values = array();
@@ -92,19 +98,19 @@ class FrontController {
         }
     }
 
-    private function getParams() {
+    public function getParams() {
         return $this->_params;
     }
 
-    private function getController() {
+    public function getController() {
         return $this->_controller;
     }
 
-    private function getAction() {
+    public function getAction() {
         return $this->_action;
     }
 
-    private function getBody() {
+    public function getBody() {
         return $this->_body;
     }
 

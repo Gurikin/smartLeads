@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Tasker</title>
+        <link rel="stylesheet" type="text/css" href="/application/css/main.css" media="screen" />
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="/application/scripts/modernizr-2.6.2.js"></script>
+
+        <script type="text/javascript" src="/application/scripts/bootstrap.js" async="async"></script>
+        
+        <script src="/gurikin/js/ajax/respond.js"></script>
+        <script src="/gurikin/js/ajax/ajax.js"></script>
+
+        <script src="/gurikin/js/parcing/parse.js"></script>
+        <script src="/gurikin/js/sorting/compare.js"></script>
+        <script src="/gurikin/js/sorting/sort.js"></script>
+        <script src="/gurikin/js/util/dom_changes.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-fixed-top">
+            <a class="navbar-brand justify-content-center" href="/site/index">Smart-Leads</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarsExample04">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href = '/site/sorttable'>Сортировка таблицы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href = '/site/feedback'>Обратная связь</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href = '/site/fileiteration'>Чтение файла</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="container body-content" class="container body-content">|||
+        </div>
+            <hr />
+            <footer>
+                <p>&copy; 2018 – BIV</p>
+            </footer>
+
+        <div id='modalWindow' class='modalWindow'>
+            <div class="modalWindow-table">
+                <div class="modalWindow-cell">
+                    <div id='modalWindow-container' class='modalWindow-container'>
+                        <div href="" class="close" onclick="$('#modalWindow').fadeToggle(350);"></div>
+                        <div id='modalWindow-content' class='modalWindow-content'></div>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <a class='btn' onclick="$('#modalWindow').toggle(350);">&laquo; Вернуться</a>
+            </p>
+        </div>
+    </body>
+    <script src="/gurikin/js/sorting/sortAction.js"></script>
+</html>

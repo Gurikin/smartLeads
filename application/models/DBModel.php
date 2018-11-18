@@ -6,7 +6,7 @@
  * @author Igor Banchikov
  */
 
-class DBConnect
+class DBModel
 {
     /**
      * @var object $_dbh instance of PDO class. Using for the db query

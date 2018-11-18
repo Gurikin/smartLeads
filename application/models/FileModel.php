@@ -1,5 +1,23 @@
 <?php
 class FileModel{
+
+    private $dinamicContent;
+
+    /**
+     * @return mixed
+     */
+    public function getDinamicContent()
+    {
+        return $this->dinamicContent;
+    }
+
+    /**
+     * @param mixed $dinamicContent
+     */
+    public function setDinamicContent($dinamicContent): void
+    {
+        $this->dinamicContent = $dinamicContent;
+    }
         /**
          * 
          * @param type string $file - current view
@@ -7,17 +25,18 @@ class FileModel{
          * @return type string - the content for the current view
          */
         public function render($file, $getLayout = false) {
-          
           ob_start();
           if ($getLayout) {
             $bodyStr = file_get_contents(LAYOUT_FILE);
             $bodyArr = explode('|||', $bodyStr);
-            echo ($bodyArr[0]);
-            include($file);
-            echo ($bodyArr[1]);            
+            echo $bodyArr[0];
+            include ($file);
+            echo $bodyArr[1];
           } else {
-            include($file);
+              include($file);
           }
+          ob_flush();
           return ob_get_clean();
         }
+
 }
