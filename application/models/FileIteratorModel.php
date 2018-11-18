@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gurikin
- * Date: 16.11.18
- * Time: 22:23
- */
 
 class FileIteratorModel implements SeekableIterator
 {
@@ -116,7 +110,7 @@ class FileIteratorModel implements SeekableIterator
     public function seek($position)
     {
         $position--;
-        $condition = ($this->key() < $position) ? (1) : /*($this->key() == $position) ? 0 :*/ (-1);
+        $condition = ($this->key() < $position) ? (1) : (-1);
         switch ($condition) {
             case (-1):
                 $this->_tempGenerator = $this->copyGen();
@@ -132,6 +126,15 @@ class FileIteratorModel implements SeekableIterator
     }
 
     /**
+     * Решил добвать коментарий по тестированию скорости выполнения выборки 10000 строк 25000000.
+     * На своей машине (core i5 8Gb RAM linux Ubuntu 18.04) я получаю результат приблизительно за 3.5 секунды
+     * с отключенным xdebug. При включенном xdebug я получаю где-то 44 секунды, что конечно вполне закономерно.
+     * Стоит отметить, что при реализованном мной подходе на скорость выполнения в большей степени влияет диапазон
+     * строк из файла. Получаем линейную зависимость времени от места расположения диапозона номеров искомых строк
+     * к концу файла - чем ближе к концу - тем медленнее.
+     * В моем случае при $randomIndexes[] = random_int(0,2500000); скорость выполнения уже в 10 раз больше - 0.4 сек
+     * При этом замеры времени показывают, что выборка 500000 строк из 25000000 происходит за 4 секунды (печать в
+     * браузер конечно не лезет ни в какие ворота - нужна пагинация).
      * @param array $strNumbers
      * @return Generator - the collection of read from file lines
      */
@@ -177,12 +180,19 @@ class FileIteratorModel implements SeekableIterator
         $this->_currentString = null;
     }
 
-
-    //TODO move to util class
+    /**
+     * This script generate the array with random indexes - numbers of strings from file
+     * For the faster getting strings from file, we need to work on getting that array
+     * because the generators work so fast
+     * @param $count
+     * @return array
+     * @throws Exception
+     */
     public function getRandomIndexes($count) {
         $randomIndexes = array();
+        $limit = $this->getCount($this->_fileGenerator);
         for ($i=0;$i<$count;$i++) {
-            $randomIndexes[] = random_int(0,25000000);
+            $randomIndexes[] = random_int(0,$limit);
         }
         sort ($randomIndexes);
         $randomIndexes = array_unique($randomIndexes);

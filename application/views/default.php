@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <h1>TASKER</h1>
+    <h1>SMART-LEADS</h1>
 </div>
 <div class="content col-lg-12 justify-content-start">
     <div>
@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a class="task" href="/site/sorttable">
+                <a class="task" href="/site/feedback">
                 Разработать форму обратной связи. Форма должна включать следующие поля: 1) имя; 2) email; 3) текст сообщения. Все поля обязательные. Необходимо предусмотреть валидацию поля email. Значения нужно сохранять в базу данных MySQL (с использованием PDO).
                 </a>
             </li>

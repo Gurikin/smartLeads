@@ -1,16 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: gurikin
- * Date: 18.11.18
- * Time: 3:59
- */
-?>
+<div class="jumbotron">
+    <h1>SMART-LEADS</h1>
+</div>
 
 <?php
 $timeStart = microtime(true);
 foreach ($this->getDinamicContent() as $item) {
-    echo $item;
+    echo $item . "<br>";
 }
 $timeEnd = microtime(true);
 echo "<hr><b>Объем используемой памяти: ";

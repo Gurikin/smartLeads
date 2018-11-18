@@ -1,11 +1,4 @@
 <?php
-
-/* Автозагрузчик классов */
-spl_autoload_register(function ($class){
-//	echo "<h1>$class</h1>\n";
-    require_once($class.'.php');
-});
-
 /**
  * @author Igor Banchikov
  * @todo This is the main controller class,

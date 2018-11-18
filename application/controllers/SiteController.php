@@ -1,9 +1,5 @@
 <?php
-/**
- * Description of IndexController
- *
- * @author BIV
- */
+
 class SiteController extends DBModel implements IController {
     private $_router;
     public $model;
@@ -17,6 +13,10 @@ class SiteController extends DBModel implements IController {
     }
 
     public function indexAction() {
+        $z=1;
+        foreach ($z as $item) {
+            echo $item;
+        }
 		$output = $this->model->render(DEFAULT_FILE, true);
         $this->_router->setBody($output);
 	}
@@ -32,6 +32,7 @@ class SiteController extends DBModel implements IController {
     }
 
     public function fileiterationAction () {
+        ini_set('max_execution_time', '500');
         $count = 10000;
         $fr = new FileIteratorModel(/*'source/myphp/text.txt'*/TEXT_2GB);
         $randomIndexes = $fr->getRandomIndexes($count);

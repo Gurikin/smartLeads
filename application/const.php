@@ -8,7 +8,7 @@ set_include_path(get_include_path()
 define('DEFAULT_FILE', $_SERVER["DOCUMENT_ROOT"] . 'application/views/default.php');
 
 //define('IMAGE_DIR', $_SERVER["DOCUMENT_ROOT"] . '/data/img/');
-define('TEXT_2GB', $_SERVER["DOCUMENT_ROOT"] . 'source/myphp/text.txt');
+define('TEXT_2GB', $_SERVER["DOCUMENT_ROOT"] . 'source/text.txt');
 
 /* Шаблон для страниц */
 define('LAYOUT_FILE', $_SERVER["DOCUMENT_ROOT"] . 'application/views/layout/layout.html');
