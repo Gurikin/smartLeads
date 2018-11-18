@@ -2,7 +2,7 @@
 
 class FileIteratorModel implements SeekableIterator
 {
-    private $_filePath = "source/myphp/text.txt";
+    private $_filePath = TEXT_2GB;
     private $_key = 0;
     private $_currentString = 0;
     /**
